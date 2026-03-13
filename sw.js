@@ -1,40 +1,32 @@
-const CACHE="festival-v1";
+const CACHE = "festival-v1";
 
-const urls=[
-
-"/",
-"/index.html",
-"/css/style.css",
-"/js/app.js",
-"/js/settings.js"
-
+const urls = [
+  "/",
+  "/index.html",
+  "/css/style.css",
+  "/js/app.js",
+  "/js/settings.js",
+  "/offline.html"
 ];
 
-self.addEventListener("install",e=>{
+self.addEventListener("install", e => {
 
-e.waitUntil(
-
-caches.open(CACHE).then(cache=>cache.addAll(urls))
-
-);
+  e.waitUntil(
+    caches.open(CACHE).then(cache => cache.addAll(urls))
+  );
 
 });
 
-self.addEventListener("fetch",e=>{
+self.addEventListener("fetch", e => {
 
-e.respondWith(
+  e.respondWith(
 
-caches.match(e.request).then(res=>res||fetch(e.request))
+    caches.match(e.request).then(res => {
 
-);
-  self.addEventListener("fetch",e=>{
+      return res || fetch(e.request).catch(() => caches.match("/offline.html"));
 
-e.respondWith(
+    })
 
-fetch(e.request).catch(()=>caches.match("offline.html"))
-
-);
-
-});
+  );
 
 });
