@@ -27,5 +27,14 @@ e.respondWith(
 caches.match(e.request).then(res=>res||fetch(e.request))
 
 );
+  self.addEventListener("fetch",e=>{
+
+e.respondWith(
+
+fetch(e.request).catch(()=>caches.match("offline.html"))
+
+);
+
+});
 
 });
