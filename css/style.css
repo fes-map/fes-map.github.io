@@ -1,0 +1,186 @@
+body{
+
+margin:0;
+font-family:sans-serif;
+background:#f4f4f4;
+color:#222;
+opacity:0;
+transition:opacity 0.4s;
+
+}
+
+body.loaded{
+opacity:1;
+}
+
+header{
+
+background:#ff6600;
+color:white;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+.notice{
+
+background:#fff3cd;
+padding:15px;
+text-align:center;
+
+}
+
+.menu{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:15px;
+padding:20px;
+
+}
+
+.card{
+
+background:white;
+padding:25px;
+border-radius:12px;
+text-align:center;
+text-decoration:none;
+color:black;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+
+opacity:0;
+transform:translateY(30px);
+animation:fadeUp 0.6s forwards;
+
+position:relative;
+overflow:hidden;
+
+}
+
+.card:nth-child(2){animation-delay:.1s}
+.card:nth-child(3){animation-delay:.2s}
+.card:nth-child(4){animation-delay:.3s}
+.card:nth-child(5){animation-delay:.4s}
+
+@keyframes fadeUp{
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+.bottom-nav{
+
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:white;
+display:flex;
+justify-content:space-around;
+padding:12px;
+border-top:1px solid #ccc;
+
+}
+
+.bottom-nav a{
+
+font-size:22px;
+text-decoration:none;
+
+}
+
+/* ripple */
+
+.ripple{
+
+position:absolute;
+border-radius:50%;
+background:rgba(255,255,255,0.6);
+transform:scale(0);
+animation:ripple .6s linear;
+
+}
+
+@keyframes ripple{
+
+to{
+transform:scale(4);
+opacity:0;
+}
+
+}
+
+/* loading */
+
+#loader{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999;
+
+}
+
+.spinner{
+
+width:40px;
+height:40px;
+border:4px solid #ccc;
+border-top:4px solid orange;
+border-radius:50%;
+animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+0%{transform:rotate(0deg)}
+100%{transform:rotate(360deg)}
+
+}
+
+/* dark mode */
+
+.dark{
+
+background:#121212;
+color:white;
+
+}
+
+.dark .card{
+
+background:#1e1e1e;
+color:white;
+
+}
+
+.dark .bottom-nav{
+
+background:#1e1e1e;
+
+}
+
+/* responsive */
+
+@media (min-width:700px){
+
+.menu{
+
+grid-template-columns:repeat(3,1fr);
+
+}
+
+}
